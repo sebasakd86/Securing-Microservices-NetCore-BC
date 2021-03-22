@@ -1,10 +1,11 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace JobsApi.Models
 {
     public class Job
     {
-        [System.ComponentModel.DataAnnotations.Key]
+        [Key]
         public int JobId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }

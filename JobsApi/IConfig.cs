@@ -5,10 +5,4 @@ namespace JobsApi
         bool RunDbMigrations { get; set; }
         bool SeedDatabase { get; set; }
     }
-}namespace JobsApi
-{
-    public interface IConfig
-    {
-         
-    }
 }

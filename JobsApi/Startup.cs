@@ -87,6 +87,29 @@ namespace JobsApi
             {
                 endpoints.MapControllers();
             });
+
+            TryRunMigrationsAndSeedDatabase(app);
+        }
+
+        private void TryRunMigrationsAndSeedDatabase(IApplicationBuilder app)
+        {
+            var config = app.ApplicationServices.GetService<IConfig>();
+            if(config?.RunDbMigrations == true)
+            {
+                using(var scope = app.ApplicationServices.CreateScope())
+                {
+                    var context = scope.ServiceProvider.GetRequiredService<JobsContext>();
+                    context.Database.Migrate();
+                }
+            }
+            if(config?.SeedDatabase == true)
+            {
+                using(var scope = app.ApplicationServices.CreateScope())
+                {
+                    var context = scope.ServiceProvider.GetRequiredService<JobsContext>();
+                    DataInitializer.Initialize(context);
+                }
+            }
         }
     }
 }
