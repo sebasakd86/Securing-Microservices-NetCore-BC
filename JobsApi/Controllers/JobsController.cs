@@ -4,12 +4,14 @@ namespace JobsApi.Controllers
     using System.Threading.Tasks;
     using JobsApi.Data;
     using JobsApi.Models;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Logging;
 
     [Route("[controller]")]
     [ApiController]
+    [Authorize]
     public class JobsController : ControllerBase
     {
         private readonly ILogger<JobsController> logger;

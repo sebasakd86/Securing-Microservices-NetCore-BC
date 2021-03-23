@@ -9,12 +9,19 @@ namespace AuthServer.Config
 {
     public static class MemoryConfig
     {
+        const string SCOPE_NAME = "jobsApi.scope";
+        const string SCOPE_TITLE = "Jobs API";
+        public static IEnumerable<ApiScope> ApiScopes() =>
+         new List<ApiScope>
+         {
+             new ApiScope(SCOPE_NAME, SCOPE_TITLE)
+         };
         public static IEnumerable<ApiResource> ApiResources() => 
             new List<ApiResource>
             {
-                new ApiResource("jobsApi","Jobs API")
+                new ApiResource("jobsApi",SCOPE_TITLE)
                 {
-                    Scopes={"jobsApi.scope"}
+                    Scopes={SCOPE_NAME}
                 }
             };
         public static IEnumerable<IdentityResource> IdentityResources() => 
@@ -31,7 +38,7 @@ namespace AuthServer.Config
                     ClientId = "first-client",
                     ClientSecrets = new [] { new Secret("sebastianSuperSecret".Sha512())},
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPasswordAndClientCredentials,
-                    AllowedScopes = {IdentityServerConstants.StandardScopes.OpenId, "jobsApi.scope"}
+                    AllowedScopes = {IdentityServerConstants.StandardScopes.OpenId, SCOPE_NAME}
                 }
             };
         public static List<TestUser> TestUsers() =>

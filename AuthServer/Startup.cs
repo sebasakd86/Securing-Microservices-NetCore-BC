@@ -22,6 +22,7 @@ namespace AuthServer
                 .AddInMemoryClients(MemoryConfig.Clients())
                 .AddTestUsers(MemoryConfig.TestUsers())
                 .AddInMemoryApiResources(MemoryConfig.ApiResources())
+                .AddInMemoryApiScopes(MemoryConfig.ApiScopes())
                 .AddDeveloperSigningCredential();
             services.AddControllersWithViews();
         }
