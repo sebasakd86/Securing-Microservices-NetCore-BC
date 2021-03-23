@@ -34,6 +34,15 @@ namespace JobsApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "JobsApi", Version = "v1" });
             });
+
+            services.AddAuthentication("Bearer")
+                    .AddJwtBearer("Bearer", opt => 
+                    {
+                        opt.RequireHttpsMetadata = false;
+                        opt.Authority = "https://localhost:5011";
+                        opt.Audience = "jobsApi";
+                    });
+
             services.AddSingleton<IConfig>(
                 Configuration
                     .GetSection("CustomConfig")?
@@ -80,7 +89,7 @@ namespace JobsApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

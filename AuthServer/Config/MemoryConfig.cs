@@ -9,6 +9,14 @@ namespace AuthServer.Config
 {
     public static class MemoryConfig
     {
+        public static IEnumerable<ApiResource> ApiResources() => 
+            new List<ApiResource>
+            {
+                new ApiResource("jobsApi","Jobs API")
+                {
+                    Scopes={"jobsApi.scope"}
+                }
+            };
         public static IEnumerable<IdentityResource> IdentityResources() => 
             new List<IdentityResource> 
             {
@@ -23,7 +31,7 @@ namespace AuthServer.Config
                     ClientId = "first-client",
                     ClientSecrets = new [] { new Secret("sebastianSuperSecret".Sha512())},
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPasswordAndClientCredentials,
-                    AllowedScopes = {IdentityServerConstants.StandardScopes.OpenId}
+                    AllowedScopes = {IdentityServerConstants.StandardScopes.OpenId, "jobsApi.scope"}
                 }
             };
         public static List<TestUser> TestUsers() =>

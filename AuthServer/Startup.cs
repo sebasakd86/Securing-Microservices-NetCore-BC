@@ -10,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 namespace AuthServer
-{
+{ 
     public class Startup
     {
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -21,6 +21,7 @@ namespace AuthServer
                 .AddInMemoryIdentityResources(MemoryConfig.IdentityResources())
                 .AddInMemoryClients(MemoryConfig.Clients())
                 .AddTestUsers(MemoryConfig.TestUsers())
+                .AddInMemoryApiResources(MemoryConfig.ApiResources())
                 .AddDeveloperSigningCredential();
             services.AddControllersWithViews();
         }
