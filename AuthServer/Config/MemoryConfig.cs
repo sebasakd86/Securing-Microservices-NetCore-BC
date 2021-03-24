@@ -74,7 +74,7 @@ namespace AuthServer.Config
                         new Claim("family_name", "nerbei")
                     }
                 },
-                                new TestUser
+                new TestUser
                 {
                     SubjectId = "abc2",
                     Username = "Kulem",
