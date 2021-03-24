@@ -2,11 +2,12 @@
 using System.Threading.Tasks;
 using Job_Client.Models;
 using Job_Client.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace Job_Client.Controllers
-{
+{    
     public class HomeController : Controller
     {
         private readonly IJobService jobService;
@@ -16,7 +17,7 @@ namespace Job_Client.Controllers
             this.logger = logger;
             this.jobService = jobService;
         }
-
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var jobs = await jobService.GetJobs();

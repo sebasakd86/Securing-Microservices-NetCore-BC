@@ -56,7 +56,7 @@ namespace AuthServer.Config
                     {
                         new Secret("mvcClientSecret".Sha512())
                     },
-                    RequirePkce = false,
+                    RequirePkce = true,
                     RequireConsent = true
                 }
             };
