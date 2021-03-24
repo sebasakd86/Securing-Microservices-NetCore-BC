@@ -24,6 +24,7 @@ namespace JobsApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Job>>> Get()
         {
+            var claims = User.Claims;
             return Ok(await context.Jobs.ToListAsync());
         }
         [HttpGet("{id}")]
