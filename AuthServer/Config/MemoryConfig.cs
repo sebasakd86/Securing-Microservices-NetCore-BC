@@ -39,6 +39,25 @@ namespace AuthServer.Config
                     ClientSecrets = new [] { new Secret("sebastianSuperSecret".Sha512())},
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPasswordAndClientCredentials,
                     AllowedScopes = {IdentityServerConstants.StandardScopes.OpenId, SCOPE_NAME}
+                },
+                new Client 
+                {
+                    ClientName = "MvcClient",
+                    ClientId = "mvc-client",
+                    AllowedGrantTypes = GrantTypes.Code,
+                    //The flow redirects the non validated user towards the login
+                    RedirectUris = new List<string>{ "http://localhost:5020/signin-oidc"},
+                    AllowedScopes= 
+                        {
+                            IdentityServerConstants.StandardScopes.OpenId,
+                            IdentityServerConstants.StandardScopes.Profile
+                        },
+                    ClientSecrets = 
+                    {
+                        new Secret("mvcClientSecret".Sha512())
+                    },
+                    RequirePkce = false,
+                    RequireConsent = true
                 }
             };
         public static List<TestUser> TestUsers() =>
